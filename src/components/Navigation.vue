@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 bg-weather-primary shadow-lg">
+  <header class="sticky top-0 bg-weather-secondary shadow-lg">
     <nav
       class="
         container
@@ -18,7 +18,18 @@
         </div>
       </RouterLink>
 
-      <div class="flex gap-3 flex-1 justify-end"></div>
+      <div class="flex gap-3 flex-1 justify-end">
+        <i
+          class="
+            fa-solid fa-circle-info
+            text-xl
+            hover:text-weather-secondary
+            duration-150
+            cursor-pointer
+          "
+          @click="toggleModal"
+        ></i>
+      </div>
 
       <Modal :modalActive="modalActive" @close-modal="toggleModal">
         <div class="text-black">
@@ -55,4 +66,12 @@
 </template>
 
 <script setup>
+import { RouterLink, useRoute, useRouter } from "vue-router";
+//import { uid } from "uid";
+import { ref } from "vue";
+import Modal from "./Modal.vue";
+const modalActive = ref(null);
+const toggleModal = () => {
+  modalActive.value = !modalActive.value;
+};
 </script>
